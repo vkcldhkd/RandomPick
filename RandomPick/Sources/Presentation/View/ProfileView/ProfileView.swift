@@ -36,7 +36,7 @@ final class ProfileView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
         rootFlexContainer.pin.all()
-        rootFlexContainer.flex.layout()
+        rootFlexContainer.flex.layout(mode: .fitContainer)
     }
 }
 
@@ -47,9 +47,9 @@ private extension ProfileView {
         
         self.userImageView.layer.cornerRadius = 35
         self.userImageView.clipsToBounds = true
-        self.userImageView.contentMode = .scaleAspectFill
+        self.userImageView.contentMode = .center
         
-        self.userNameLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        self.userNameLabel.font = .systemFont(ofSize: 10, weight: .medium)
         self.userNameLabel.textColor = .white
         self.userNameLabel.textAlignment = .center
     }
@@ -62,9 +62,12 @@ private extension ProfileView {
             .define { flex in
                 flex.addItem(self.userImageView)
                     .width(70)
-                    .height(70)
+                    .aspectRatio(1)
                 flex.addItem(self.userNameLabel)
                     .marginTop(6)
+                    .width(70)
+                    .height(10)
+                    .grow(1)
             }
     }
 }
@@ -83,7 +86,7 @@ extension ProfileView: ReactorKit.View {
         
         reactor.state.map { $0.user.createName() }
             .distinctUntilChanged()
-            .debug()
+            .observe(on: MainScheduler.instance)
             .bind(to: self.userNameLabel.rx.text)
             .disposed(by: self.disposeBag)
     }
