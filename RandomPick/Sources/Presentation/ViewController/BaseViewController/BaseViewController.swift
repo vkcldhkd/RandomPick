@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import RxSwift
 
 class BaseViewController: UIViewController {

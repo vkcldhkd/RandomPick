@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A868DC802EB8EED00097F876 /* RxKingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A868DC7F2EB8EED00097F876 /* RxKingfisher */; };
 		A868DC832EB8EEE10097F876 /* Codextended in Frameworks */ = {isa = PBXBuildFile; productRef = A868DC822EB8EEE10097F876 /* Codextended */; };
-		A868DC862EB8EEEE0097F876 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A868DC852EB8EEEE0097F876 /* SnapKit */; };
 		A868DC892EB8EEFD0097F876 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = A868DC882EB8EEFD0097F876 /* ReactorKit */; };
 		A868DCAF2EB8FA490097F876 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A868DCAE2EB8FA490097F876 /* RxCocoa */; };
 		A868DCB12EB8FA490097F876 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A868DCB02EB8FA490097F876 /* RxSwift */; };
@@ -80,7 +79,6 @@
 				A868DEAC2EBA215C0097F876 /* FlexLayout in Frameworks */,
 				A868DCB12EB8FA490097F876 /* RxSwift in Frameworks */,
 				A868DD7B2EBA0C690097F876 /* Alamofire in Frameworks */,
-				A868DC862EB8EEEE0097F876 /* SnapKit in Frameworks */,
 				A868DC832EB8EEE10097F876 /* Codextended in Frameworks */,
 				A868DCAF2EB8FA490097F876 /* RxCocoa in Frameworks */,
 				A868DC892EB8EEFD0097F876 /* ReactorKit in Frameworks */,
@@ -148,7 +146,6 @@
 			packageProductDependencies = (
 				A868DC7F2EB8EED00097F876 /* RxKingfisher */,
 				A868DC822EB8EEE10097F876 /* Codextended */,
-				A868DC852EB8EEEE0097F876 /* SnapKit */,
 				A868DC882EB8EEFD0097F876 /* ReactorKit */,
 				A868DCAE2EB8FA490097F876 /* RxCocoa */,
 				A868DCB02EB8FA490097F876 /* RxSwift */,
@@ -241,7 +238,6 @@
 			packageReferences = (
 				A868DC7E2EB8EED00097F876 /* XCRemoteSwiftPackageReference "RxKingfisher" */,
 				A868DC812EB8EEE10097F876 /* XCRemoteSwiftPackageReference "Codextended" */,
-				A868DC842EB8EEEE0097F876 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A868DC872EB8EEFD0097F876 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				A868DCAD2EB8FA490097F876 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A868DD792EBA0C690097F876 /* XCRemoteSwiftPackageReference "Alamofire" */,
@@ -649,14 +645,6 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		A868DC842EB8EEEE0097F876 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
 		A868DC872EB8EEFD0097F876 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
@@ -709,11 +697,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A868DC812EB8EEE10097F876 /* XCRemoteSwiftPackageReference "Codextended" */;
 			productName = Codextended;
-		};
-		A868DC852EB8EEEE0097F876 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A868DC842EB8EEEE0097F876 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 		A868DC882EB8EEFD0097F876 /* ReactorKit */ = {
 			isa = XCSwiftPackageProductDependency;
