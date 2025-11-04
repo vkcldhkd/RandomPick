@@ -12,5 +12,5 @@ protocol RandomUserRepository {
         gender: RandomUserGender,
         page: Int,
         limit: Int
-    ) -> Observable<[RandomUser]>
+    ) -> Observable<NetworkResponse<RandomUserSearchResponse>?>
 }

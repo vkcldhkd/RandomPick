@@ -8,12 +8,11 @@
 import Foundation
 
 // MARK: - Result
-struct RandomUser: ModelType, Equatable {
-    enum Event {
-        case updateEditMode(isEditng: Bool)
-        case select(user: RandomUser?, gender: RandomUserGender?)
+struct RandomUser: Codable, Equatable {
+    static func == (lhs: RandomUser, rhs: RandomUser) -> Bool {
+        return lhs.createName() == rhs.createName() && lhs.gender == rhs.gender   
     }
-
+    
     let gender: RandomUserGender?
     let name: RandomUserName?
     let location: RandomUserLocation?
@@ -46,3 +45,10 @@ struct RandomUser: ModelType, Equatable {
     }
 }
 
+extension RandomUser {
+    func createName() -> String {
+        let firstName = self.name?.first ?? ""
+        let lastName = self.name?.last ?? ""
+        return firstName + " " + lastName
+    }
+}

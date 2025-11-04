@@ -14,6 +14,8 @@
 		A868DCAF2EB8FA490097F876 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A868DCAE2EB8FA490097F876 /* RxCocoa */; };
 		A868DCB12EB8FA490097F876 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A868DCB02EB8FA490097F876 /* RxSwift */; };
 		A868DD7B2EBA0C690097F876 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A868DD7A2EBA0C690097F876 /* Alamofire */; };
+		A868DEA92EBA214A0097F876 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = A868DEA82EBA214A0097F876 /* PinLayout */; };
+		A868DEAC2EBA215C0097F876 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = A868DEAB2EBA215C0097F876 /* FlexLayout */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +77,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A868DEAC2EBA215C0097F876 /* FlexLayout in Frameworks */,
 				A868DCB12EB8FA490097F876 /* RxSwift in Frameworks */,
 				A868DD7B2EBA0C690097F876 /* Alamofire in Frameworks */,
 				A868DC862EB8EEEE0097F876 /* SnapKit in Frameworks */,
 				A868DC832EB8EEE10097F876 /* Codextended in Frameworks */,
 				A868DCAF2EB8FA490097F876 /* RxCocoa in Frameworks */,
 				A868DC892EB8EEFD0097F876 /* ReactorKit in Frameworks */,
+				A868DEA92EBA214A0097F876 /* PinLayout in Frameworks */,
 				A868DC802EB8EED00097F876 /* RxKingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +153,8 @@
 				A868DCAE2EB8FA490097F876 /* RxCocoa */,
 				A868DCB02EB8FA490097F876 /* RxSwift */,
 				A868DD7A2EBA0C690097F876 /* Alamofire */,
+				A868DEA82EBA214A0097F876 /* PinLayout */,
+				A868DEAB2EBA215C0097F876 /* FlexLayout */,
 			);
 			productName = RandomPick;
 			productReference = A868DC202EB8ED570097F876 /* RandomPick.app */;
@@ -239,6 +245,8 @@
 				A868DC872EB8EEFD0097F876 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 				A868DCAD2EB8FA490097F876 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A868DD792EBA0C690097F876 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A868DEA72EBA21490097F876 /* XCRemoteSwiftPackageReference "PinLayout" */,
+				A868DEAA2EBA215B0097F876 /* XCRemoteSwiftPackageReference "FlexLayout" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A868DC212EB8ED570097F876 /* Products */;
@@ -673,6 +681,22 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		A868DEA72EBA21490097F876 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.6;
+			};
+		};
+		A868DEAA2EBA215B0097F876 /* XCRemoteSwiftPackageReference "FlexLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/FlexLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +734,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A868DD792EBA0C690097F876 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A868DEA82EBA214A0097F876 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A868DEA72EBA21490097F876 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
+		};
+		A868DEAB2EBA215C0097F876 /* FlexLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A868DEAA2EBA215B0097F876 /* XCRemoteSwiftPackageReference "FlexLayout" */;
+			productName = FlexLayout;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

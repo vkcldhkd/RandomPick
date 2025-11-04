@@ -1,5 +1,5 @@
 {
-  "originHash" : "f1d46aa694816cdd5dd78c7564a757675ffbc1cc2ab5c3d5bc52859e8cb400e0",
+  "originHash" : "df3b4a6563227b4997dd433011f2645b6d98abf2d045c1417d25c82f7f55e197",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -20,12 +20,30 @@
       }
     },
     {
+      "identity" : "flexlayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/layoutBox/FlexLayout",
+      "state" : {
+        "revision" : "45b4e7cbcc9f35c05112860f4eb897aae4f5011c",
+        "version" : "2.2.2"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
         "revision" : "1a0c2df04b31ed7aa318354f3583faea24f006fc",
         "version" : "5.15.8"
+      }
+    },
+    {
+      "identity" : "pinlayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/layoutBox/PinLayout",
+      "state" : {
+        "revision" : "72f5300042618340df21500f6c4ce71bb78b93e1",
+        "version" : "1.10.6"
       }
     },
     {
@@ -71,6 +89,15 @@
       "state" : {
         "revision" : "cb05d64cef2bbf51e85c53adee937df46540a74e",
         "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "yoga",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/yoga.git",
+      "state" : {
+        "revision" : "042f5013152eb81c1552dec945b88f7b95ca350f",
+        "version" : "3.2.1"
       }
     }
   ],
