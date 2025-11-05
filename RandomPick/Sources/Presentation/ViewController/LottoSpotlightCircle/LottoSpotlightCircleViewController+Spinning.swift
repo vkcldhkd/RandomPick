@@ -6,6 +6,7 @@
 //
 import UIKit
 import AudioToolbox
+import ReactorKit
 
 extension LottoSpotlightCircleViewController {
     func startSpinning() {
@@ -78,8 +79,44 @@ private extension LottoSpotlightCircleViewController {
             }
         }) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                print("\(selected.reactor?.currentState.user)")
+                self.presentProfileDetail(for: selected.reactor?.currentState.user, from: selected)
 //                self.expandSelectedProfile(selected)
             }
         }
     }
+    
+    func presentProfileDetail(for user: RandomUser?, from selectedView: UIView) {
+        guard let user = user else { return }
+        
+        
+        guard let snapshot = selectedView.snapshotView(afterScreenUpdates: true) else { return }
+        snapshot.frame = selectedView.convert(selectedView.bounds, to: self.view)
+        view.addSubview(snapshot)
+        
+        
+        let detailVC = ProfileDetailViewController(profile: user)
+        detailVC.view.alpha = 0
+        
+        
+        UIView.animate(withDuration: 0.6,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.4,
+                       options: .curveEaseInOut,
+                       animations: {
+            snapshot.transform = CGAffineTransform(scaleX: 8.0, y: 8.0)
+            snapshot.alpha = 0.0
+        })
+        
+        UIView.animate(withDuration: 0.3, delay: 0.4, options: .curveEaseOut, animations: {
+            detailVC.view.alpha = 1.0
+        })
+        
+        // Present
+        present(detailVC, animated: false) {
+            snapshot.removeFromSuperview()
+        }
+    }
+
 }

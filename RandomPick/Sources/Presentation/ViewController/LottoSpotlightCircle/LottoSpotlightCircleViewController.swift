@@ -17,16 +17,13 @@ final class LottoSpotlightCircleViewController: BaseViewController {
     typealias Reactor = LottoSpotlightCircleViewReactor
     private let radius: CGFloat = 120
     
-    // MARK: - Properties (Private)
-    
-    private let spotlightLayer = CALayer()
-    
     // MARK: - Properties (Public)
+    let spotlightLayer = CALayer()
     var currentIndex = 0
     var profileViews: [ProfileView] = []
     
     // MARK: - UI
-    private var expandedSnapshot: UIView?
+    var expandedSnapshot: UIView?
     private var activeSmokeEmitters: [CAEmitterLayer] = []
     
     init(fetchProfilesUseCase: FetchProfilesUseCase) {
@@ -79,42 +76,42 @@ final class LottoSpotlightCircleViewController: BaseViewController {
 //    }
 
 //    
-//    @objc private func shrinkBackToCircle() {
-//        guard let snapshot = expandedSnapshot else { return }
-//        let lampCenter = CGPoint(x: view.center.x, y: view.center.y + 200)
+    @objc func shrinkBackToCircle() {
+        guard let snapshot = expandedSnapshot else { return }
+        let lampCenter = CGPoint(x: view.center.x, y: view.center.y + 200)
 //        createSmokeEmitter(at: lampCenter)
-//        
-//        let path = UIBezierPath()
-//        path.move(to: snapshot.center)
-//        path.addQuadCurve(to: lampCenter, controlPoint: CGPoint(x: view.center.x, y: snapshot.center.y + 300))
-//        
-//        let move = CAKeyframeAnimation(keyPath: "position")
-//        move.path = path.cgPath
-//        move.duration = 1.2
-//        
-//        let scale = CABasicAnimation(keyPath: "transform.scale")
-//        scale.fromValue = 1.0
-//        scale.toValue = 0.1
-//        scale.duration = 1.2
-//        
-//        let fade = CABasicAnimation(keyPath: "opacity")
-//        fade.fromValue = 1.0
-//        fade.toValue = 0.0
-//        fade.duration = 1.2
-//        
-//        let group = CAAnimationGroup()
-//        group.animations = [move, scale, fade]
-//        group.duration = 1.2
-//        group.fillMode = .forwards
-//        group.isRemovedOnCompletion = false
-//        snapshot.layer.add(group, forKey: "lampDisappear")
-//        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-//            snapshot.removeFromSuperview()
-//            self.expandedSnapshot = nil
+        
+        let path = UIBezierPath()
+        path.move(to: snapshot.center)
+        path.addQuadCurve(to: lampCenter, controlPoint: CGPoint(x: view.center.x, y: snapshot.center.y + 300))
+        
+        let move = CAKeyframeAnimation(keyPath: "position")
+        move.path = path.cgPath
+        move.duration = 1.2
+        
+        let scale = CABasicAnimation(keyPath: "transform.scale")
+        scale.fromValue = 1.0
+        scale.toValue = 0.1
+        scale.duration = 1.2
+        
+        let fade = CABasicAnimation(keyPath: "opacity")
+        fade.fromValue = 1.0
+        fade.toValue = 0.0
+        fade.duration = 1.2
+        
+        let group = CAAnimationGroup()
+        group.animations = [move, scale, fade]
+        group.duration = 1.2
+        group.fillMode = .forwards
+        group.isRemovedOnCompletion = false
+        snapshot.layer.add(group, forKey: "lampDisappear")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            snapshot.removeFromSuperview()
+            self.expandedSnapshot = nil
 //            self.reloadProfiles()
-//        }
-//    }
+        }
+    }
 //    
 //    private func reloadProfiles() {
 //        profileViews.forEach { $0.removeFromSuperview() }
