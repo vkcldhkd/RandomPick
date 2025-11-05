@@ -7,15 +7,26 @@
 
 import UIKit
 import Kingfisher
+import FlexLayout
+import PinLayout
+import ReactorKit
+import RxKingfisher
+import RxCocoa
+
 
 final class ProfileDetailViewController: BaseViewController {
-    private let profile: RandomUser
+    // MARK: - Constants
+    typealias Reactor = ProfileDetailViewReactor
     
+    // MARK: - UI
+    private let rootContainer = UIView()
+    private let closeButton = UIButton(type: .system)
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     
+    // MARK: - Init
     init(profile: RandomUser) {
-        self.profile = profile
+        defer { self.reactor = Reactor(profile: profile) }
         super.init()
     }
     
@@ -23,34 +34,81 @@ final class ProfileDetailViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        self.setupUI()
+        self.setupLayout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        rootContainer.pin.all()
+        rootContainer.flex.layout(mode: .adjustHeight)
+    }
+}
+
+private extension ProfileDetailViewController {
+    // MARK: - setupUI
+    func setupUI() {
+        self.view.backgroundColor = .black
+        self.view.addSubview(self.rootContainer)
         
-        imageView.contentMode = .scaleAspectFill
-        imageView.kf.setImage(with: URLHelper.createEncodedURL(url: profile.picture?.large))
-        imageView.layer.cornerRadius = 100
-        imageView.clipsToBounds = true
+        self.closeButton.setImage(UIImage(systemName: "xmark")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.closeButton.tintColor = .white
         
-        nameLabel.text = profile.createName()
-        nameLabel.textColor = .white
-        nameLabel.font = .systemFont(ofSize: 20, weight: .semibold)
-        nameLabel.textAlignment = .center
+        self.imageView.clipsToBounds = true
+        self.imageView.contentMode = .scaleAspectFill
         
-        view.addSubview(imageView)
-        view.addSubview(nameLabel)
+        self.nameLabel.textColor = .white
+        self.nameLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        self.nameLabel.textAlignment = .center
+    }
+    
+    // MARK: - setupLayout
+    func setupLayout() {
+        self.rootContainer.flex
+            .direction(.column)
+            .alignItems(.center)
+            .justifyContent(.start)
+            .paddingHorizontal(20)
+            .paddingTop(60)
+            .define { flex in
+                flex.addItem(self.closeButton)
+                    .alignSelf(.end)
+                    .width(40)
+                    .height(40)
+                    .marginBottom(40)
+                
+                flex.addItem(self.imageView)
+                    .width(100%)
+                    .aspectRatio(1)
+                
+                flex.addItem(self.nameLabel)
+                    .marginTop(20)
+            }
+    }
+}
+
+extension ProfileDetailViewController: ReactorKit.View {
+    func bind(reactor: Reactor) {
+        // MARK: - Action
+        self.closeButton.rx.tap
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .subscribe(onNext: { $0.0.dismiss(animated: true) })
+            .disposed(by: self.disposeBag)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40),
-            imageView.widthAnchor.constraint(equalToConstant: 200),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            
-            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        // MARK: - State
+        reactor.state.map { $0.profile.picture?.large }
+            .distinctUntilChanged()
+            .compactMap { URLHelper.createEncodedURL(url: $0) }
+            .bind(to: self.imageView.kf.rx.image())
+            .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.profile.createName() }
+            .distinctUntilChanged()
+            .bind(to: self.nameLabel.rx.text)
+            .disposed(by: self.disposeBag)
     }
 }
