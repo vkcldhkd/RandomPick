@@ -20,7 +20,7 @@ final class LottoSpotlightCircleViewController: BaseViewController {
     // MARK: - Properties (Public)
     let spotlightLayer = CALayer()
     var currentIndex = 0
-    var profileViews: [ProfileView] = []
+    var profileViews: [ProfileView] = [] 
     
     init(fetchProfilesUseCase: FetchProfilesUseCase) {
         defer { self.reactor = Reactor(fetchProfilesUseCase: fetchProfilesUseCase) }
